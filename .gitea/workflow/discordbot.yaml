@@ -21,4 +21,4 @@ jobs:
       - name: Monitor Releases
         run: |
           source venv/bin/activate
-          python scripts/monitor_releases.py --github_token ${{secrets.GITHUB_TOKEN}} --discord_webhook_url ${{secrets.DISCORD_WEBHOOK_URL}}
+          python scripts/monitor_releases.py --discord_webhook_url ${{secrets.DISCORD_WEBHOOK_URL}}
