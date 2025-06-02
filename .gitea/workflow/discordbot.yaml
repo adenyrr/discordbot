@@ -1,0 +1,24 @@
+name: Monitor Releases
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Vérifie chaque heure
+
+jobs:
+  monitor-releases:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Install dependencies
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install requests discord.py
+
+      - name: Monitor Releases
+        run: |
+          source venv/bin/activate
+          python scripts/monitor_releases.py --github_token ${{secrets.GITHUB_TOKEN}} --discord_webhook_url ${{secrets.DISCORD_WEBHOOK_URL}}
